@@ -1,0 +1,62 @@
+import os
+import csv
+
+budget_data__csv = os.path.join("..", "Resources", "budget_data_.csv")
+
+
+with open(budget_data__csv) as csv_file:
+    csvreader = csv.reader(csv_file, delimiter=",")
+
+    
+    csv_header = next(csv_file)
+    print(f"Header: {csv_header}")
+
+
+
+    all_Months = 0
+    net_Profit = []
+    prev = None
+    change_list = []
+    
+
+    
+    for row in csvreader:
+
+        all_Months = all_Months + 1
+        net_Profit.append(int(row[1]))
+        profit = int(row[1])
+
+        if prev is not None:
+            change = profit - prev
+            print(change)
+            change_list.append(int(change))
+        prev = profit
+
+
+    
+    
+    total_change = sum(change_list)
+    average = total_change / len(change_list)
+    total = sum(net_Profit)
+    greatest_inc = max(change_list)
+    greatest_dec = min(change_list)
+
+    print("Total Months: " + str(all_Months))
+    print("Total: $" + str(total))
+    print("Average Change: " + str(average))
+    print("Greatest Increase: $" + str(greatest_inc))
+    print("Greatest Decrease: $" + str(greatest_dec))
+
+
+
+    
+    max_index = change_list.index(greatest_inc)
+    new_max_index = max_index + 3
+    month = row[0]new_max_index
+    print(month)
+    
+        
+        
+    
+
+        
